@@ -1,0 +1,15 @@
+- name: Instalando uma lista de pacotes nos hosts com condicional
+  hosts: all
+  tasks:
+    - name: instalando pacotes
+      become: true
+      apt:
+        name: "{{item}}"
+      loop:
+        - sl
+        - ncdu
+        - wget
+        - git
+        - vim
+        - jq
+      when: ansible_distribution == "Debian"
